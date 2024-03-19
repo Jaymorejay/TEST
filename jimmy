@@ -1,0 +1,137 @@
+// Step 1: Define a book object template
+function createBook(title, author, isBorrowed) {
+  return {
+    title,
+    author,
+    isBorrowed
+  };
+}
+
+// Step 2: Create an array of books as our library
+let library = [
+  createBook('The Hobbit', 'J.R.R. Tolkien', false),
+  createBook('1984', 'George Orwell', true),
+  createBook('The Catcher in the Rye', 'J.D. Salinger', false)
+];
+
+// Step 3: Function to add a new book
+function addBook(title, author, isBorrowed) {
+  const newBook = createBook(title, author, isBorrowed);
+  library.push(newBook);
+}
+
+// Step 4: Function to find a book by title
+function findBook(title) {
+  return library.find(book => book.title === title);
+}
+
+// Step 5: Function to display all books
+function displayBooks() {
+  library.forEach(book => {
+    console.log(`Title: ${book.title}, Author: ${book.author}, Borrowed: ${book.isBorrowed}`);
+  });
+}
+
+// Example usage:
+addBook('Brave New World', 'Aldous Huxley', true);
+console.log(findBook('1984'));
+displayBooks();
+
+
+// Step 1: Initialize tasks array
+let tasks = [
+  'Buy groceries',
+  'Clean the house',
+  'Pay bills'
+];
+
+// Step 2: Function to add a new task
+function addTask(task) {
+  tasks.push(task);
+}
+
+// Step 3: Function to remove a task by name
+function removeTask(taskName) {
+  const index = tasks.findIndex(task => task === taskName);
+  if (index > -1) {
+    tasks.splice(index, 1);
+  }
+}
+
+// Step 4: Function to display all tasks
+function displayTasks() {
+  console.log('Tasks List:');
+  tasks.forEach(task => {
+    console.log(`- ${task}`);
+  });
+}
+
+// Step 5: Function to find tasks containing a specific keyword
+function findTasks(keyword) {
+  return tasks.filter(task => task.toLowerCase().includes(keyword.toLowerCase()));
+}
+
+// Example usage:
+addTask('Study JavaScript');
+removeTask('Pay bills');
+displayTasks(); // Displays all tasks after adding one and removing one
+console.log(findTasks('buy')); // Finds and logs tasks containing 'buy'
+
+
+// Array of user roles with their permissions
+const userRoles = [
+  { role: 'admin', permissions: ['read', 'write', 'delete'] },
+  { role: 'editor', permissions: ['read', 'write'] },
+  { role: 'viewer', permissions: ['read'] }
+];
+
+// Function to check if a user has a specific permission
+function hasPermission(userRole, permission) {
+  const user = userRoles.find(role => role.role === userRole);
+  return user && user.permissions.includes(permission);
+}
+
+// Using the function within a loop to check multiple permissions
+function checkUserPermissions(userRole, permissionsToCheck) {
+  for (let permission of permissionsToCheck) {
+    if (!hasPermission(userRole, permission)) {
+      return false; // If any permission is not found, return false
+    }
+  }
+  return true; // User has all permissions
+}
+
+// Example usage
+console.log(checkUserPermissions('admin', ['read', 'delete'])); // true
+console.log(checkUserPermissions('viewer', ['read', 'write'])); // false
+
+
+const products = [
+  { name: 'Laptop', category: 'Electronics', price: 1000 },
+  { name: 'Shirt', category: 'Apparel', price: 50 },
+  { name: 'Coffee Maker', category: 'Appliances', price: 100 }
+];
+
+// Function to filter products by price range and category
+function filterProducts(minPrice, maxPrice, category) {
+  return products.filter(product => 
+    product.price >= minPrice &&
+    product.price <= maxPrice &&
+    (category ? product.category === category : true)
+  );
+}
+
+// Example usage
+console.log(filterProducts(50, 150, 'Apparel'));
+console.log(filterProducts(50, 150, ''));
+
+
+// Function to check if an array is empty
+function isEmpty(array) {
+  return !array.length; // Returns true if array is empty
+}
+
+// Example usage
+console.log(isEmpty([])); // true
+console.log(isEmpty([1, 2, 3])); // false
+
